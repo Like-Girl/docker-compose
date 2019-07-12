@@ -1,0 +1,45 @@
+version: "3"
+
+services:
+  apollo-configservice:                                         ##容器服务名
+    container_name: apollo-configservice                        ##容器名
+    build: C:\Users\Java\Desktop\插件\apollo\apollo-configservice\src\main\docker\                ##Dockerfile路径
+    image: apollo-configservice:0.9.0                           ##镜像名
+    ports:
+      - "8080:8080"    
+    volumes:
+      - "D:\\LikeGirl\\Logs\\100003171:/opt/logs/100003171"    ##将/opt/logs/100003171目录挂载到宿主机的/Users/mobin/opt/logs/100003171方便在宿主机上查看日志
+    environment:
+      - spring_datasource_url=jdbc:mysql://192.168.3.65:3306/ApolloConfigDB?characterEncoding=utf8
+      - spring_datasource_username=root
+      - spring_datasource_password=123456
+
+  apollo-adminservice:
+    container_name: apollo-adminservice
+    build: C:\Users\Java\Desktop\插件\apollo\apollo-adminservice\src\main\docker\
+    image: apollo-adminservice:0.9.0
+    ports:
+      - "8090:8090"
+    depends_on:
+      - apollo-configservice
+    volumes:
+      - "D:\\LikeGirl\\Logs\\100003172:/opt/logs/100003172"
+    environment:
+      - spring_datasource_url=jdbc:mysql://192.168.3.65:3306/ApolloConfigDB?characterEncoding=utf8
+      - spring_datasource_username=root
+      - spring_datasource_password=123456
+
+  apollo-portal:
+    container_name: apollo-portal
+    build: C:\Users\Java\Desktop\插件\apollo\apollo-portal\src\main\docker\
+    image: apollo-portal:0.9.0
+    ports:
+      - "8070:8070"
+    depends_on:
+      - apollo-adminservice
+    volumes:
+      - "D:\\LikeGirl\\Logs\\100003173:/opt/logs/100003173"
+    environment:
+      - spring_datasource_url=jdbc:mysql://192.168.3.65:3306/ApolloPortalDB?characterEncoding=utf8
+      - spring_datasource_username=root
+      - spring_datasource_password=123456

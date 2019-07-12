@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  kibana:
+    image: docker.elastic.co/kibana/kibana:6.5.4
+    environment:
+      SERVER_NAME: kibana
+      SERVER_HOST: 0.0.0.0
+      SERVER_PORT: 5601
+      ELASTICSEARCH_URL: http://118.190.88.89:9200/
+      XPACK_MONITORING_ENABLED: "false"
+    ports:
+      - "5601:5601"
