@@ -3,6 +3,7 @@ services:
   mongo-container:
     image: mongo
     container_name: mongodb
+    # 目前，仅支持MONGO_INITDB_ROOT_USERNAME和MONGO_INITDB_ROOT_PASSWORD
     environment:
         - MONGO_INITDB_ROOT_USERNAME=root
         - MONGO_INITDB_ROOT_PASSWORD=123456
