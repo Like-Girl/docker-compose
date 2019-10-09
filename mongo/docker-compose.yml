@@ -1,7 +1,7 @@
 version: '3.6'
 services:
   mongo-container:
-    image: mongo
+    image: mongo:3.4.20
     container_name: mongodb
     # 目前，仅支持MONGO_INITDB_ROOT_USERNAME和MONGO_INITDB_ROOT_PASSWORD
     environment:
@@ -10,10 +10,12 @@ services:
     ports:
       - 27017:27017
     volumes:
-      - mongodb:/data/db
-      - mongoentrypoint:/docker-entrypoint-initdb.d/
+      - mongodb:/home/mongodb
+      - datadb:/data/db
+      - entrypoint:/docker-entrypoint-initdb.d/
     command: mongod
 
 volumes:
   mongodb:
-  mongoentrypoint:
+  datadb:
+  entrypoint:

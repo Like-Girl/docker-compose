@@ -27,23 +27,23 @@ scrape_configs:
     # scheme defaults to 'http'.
 
     static_configs:
-      - targets: ['192.168.3.65:9090']
+      - targets: ['prometheus:9090']
 
   - job_name: 'node resources'
     scrape_interval: 10s
     static_configs:
       - targets:
-        - '192.168.3.65:9100'
+        - 'node-exporter:9100'
 
   - job_name: 'cadvisor'
     static_configs:
-      - targets: ['192.168.3.65:48080']
+      - targets: ['cadvisor:8080']
 
   - job_name: 'java'
     metrics_path: /actuator/prometheus
     serverset_sd_configs:
     - servers:
-      - 192.168.3.65:2181
+      - 192.168.1.32:2181
       paths:
       - /prometheus/java-application
       timeout: 5s
