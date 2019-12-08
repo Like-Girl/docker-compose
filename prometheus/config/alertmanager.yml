@@ -6,7 +6,7 @@ global:
   # 发邮件的邮箱用户名，也就是你的邮箱　　　　　　　
   smtp_auth_username: '605336558@qq.com'
   # 发邮件的邮箱密码
-  smtp_auth_password: 'ckgubwuoxicwbcdb'
+  smtp_auth_password: '*****'
   # 不进行tls验证　　　　　　　
   smtp_require_tls: false　　　　　　　　
 
